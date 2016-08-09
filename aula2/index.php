@@ -3,7 +3,7 @@ class Math {
         private $num1;
         private $num2;
 
-        public function_construct($numbah1, $numbah2){
+        public function __construct($num1, $num2){
                 $this->num1 = $num1;
                 $this->num2 = $num2;
         }
@@ -35,6 +35,6 @@ $math = new Math(1,7);
 echo $math->sumAttr();
 echo "<br>";
 echo $math->sum(8,5);
-echo "<br>;"
+echo "<br>";
 $array = array(1, 3, 4, 5, 6, 7, 8, 99);
 echo $math->sumAll($array);
