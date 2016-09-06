@@ -1,0 +1,661 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "<Pokémon GO -Companion- API>",
+        "description": "Web Application focused on providing a user friendly source of useful information related to Pokémon GO, allowing users to query data and game information as well as provide the possibility of adding information regardless own personal progress in the game."
+    },
+    "parameters": {
+        "user-id": {
+            "name": "user-id",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "number",
+            "format": "integer"
+        },
+        "pokemon-id": {
+            "name": "pokemon-id",
+            "in": "path",
+            "description": "Pokemon id",
+            "required": true,
+            "type": "number",
+            "format": "integer"
+        }
+    },
+    "paths": {
+        "/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Get informations about all users.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "The user name.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Create a new user.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "user",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User created",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{user-id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Get informations about a user especific.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "path",
+                        "description": "The user identificador.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Change informations about a user especific.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/user-id"
+                    },
+                    {
+                        "in": "body",
+                        "name": "informations-user",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Not Acceptable",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{user-id}/pokemon": {
+            "get": {
+                "tags": [
+                    "User",
+                    "Pokemon"
+                ],
+                "description": "Get informations about a pokemon from the user.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/user-id"
+                    },
+                    {
+                        "name": "pokemon-id",
+                        "in": "query",
+                        "description": "The pokemon from user.",
+                        "required": false,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/Pokemon"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pokemon": {
+            "get": {
+                "tags": [
+                    "Pokemon"
+                ],
+                "description": "Get informations about all pokemons.\n",
+                "parameters": [
+                    {
+                        "name": "pokemon-id",
+                        "in": "query",
+                        "description": "The pokemon id.",
+                        "required": false,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pokemon"
+                ],
+                "description": "Create a new pokemon.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "pokemon",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pokemon"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "pokemon created",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/Pokemon"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pokemon/{pokemon-id}": {
+            "get": {
+                "tags": [
+                    "Pokemon"
+                ],
+                "description": "Get informations about the Pokemon especific.\n",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pokemon-id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/Pokemon"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Pokemon"
+                ],
+                "description": "Change informations about a pokemon especific.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pokemon-id"
+                    },
+                    {
+                        "in": "body",
+                        "name": "informations-pokemon",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pokemon"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/Pokemon"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Not Acceptable",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/location/{location-id}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "description": "Get informations about a location.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "location-id",
+                        "description": "Location id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/Location"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/locations/search": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "description": "Search for a location by maps coordinate.",
+                "parameters": [
+                    {
+                        "name": "distance",
+                        "in": "query",
+                        "description": "Default is 1000m (distance=1000), max distance is 5000.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "query",
+                        "description": "Latitude of the center search coordinate.\n",
+                        "type": "number"
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "query",
+                        "description": "Longitude of the center search coordinate.\n",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Location"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "username",
+                "e-mail",
+                "type",
+                "password",
+                "situation"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "e-mail": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "number",
+                    "format": "int"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "situation": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Pokemon": {
+            "type": "object",
+            "required": [
+                "nickname",
+                "dexNumber",
+                "attackIv",
+                "defenseIv",
+                "staminaIv",
+                "species",
+                "candyForEvolution",
+                "combatPower",
+                "quickMove",
+                "chargeMove",
+                "dateCaught"
+            ],
+            "properties": {
+                "nickname": {
+                    "type": "string"
+                },
+                "dexNumber": {
+                    "type": "number",
+                    "format": "int4"
+                },
+                "attackIv": {
+                    "type": "number",
+                    "format": "int2"
+                },
+                "defenseIv": {
+                    "type": "number",
+                    "format": "int2"
+                },
+                "staminaIv": {
+                    "type": "number",
+                    "format": "int2"
+                },
+                "species": {
+                    "type": "string"
+                },
+                "candyForEvolution": {
+                    "type": "number",
+                    "format": "int4"
+                },
+                "combatPower": {
+                    "type": "number",
+                    "format": "int5"
+                },
+                "quickMove": {
+                    "type": "string"
+                },
+                "chargeMove": {
+                    "type": "string"
+                },
+                "dateCaught": {
+                    "type": "number",
+                    "format": "date"
+                }
+            }
+        },
+        "Location": {
+            "type": "object",
+            "required": [
+                "name local",
+                "latitude",
+                "longitude"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name local": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            }
+        },
+        "ErrorModel": {
+            "type": "object",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
