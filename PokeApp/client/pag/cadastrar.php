@@ -19,7 +19,6 @@ if(isset($_POST['enviar'])){
     </div>';
   }else{
     $response = request("user", "create", "post");
-    var_dump($response);
     echo '<div class="jumbotron">
       <div class="container">
         <h1>Gotta catch em all</h1>
