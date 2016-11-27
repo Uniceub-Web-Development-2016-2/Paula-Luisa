@@ -36,6 +36,14 @@ class ResourceController
 
 	}	
 
+	private function remove($request){
+		$removeBody = json_decode($request->getBody(), true);
+		$query = 'DELETE FROM ' . $request->getResource() . " WHERE idUser = '" .$removeBody['id']. "'";
+		return (new DBConnector())->exec($query);
+
+		}
+
+
 	private function search($request) {
 		$query = 'SELECT * FROM '.$request->getResource(). self::queryParams($request->getParameters());
 		$result = (new DBConnector())->query($query); 
