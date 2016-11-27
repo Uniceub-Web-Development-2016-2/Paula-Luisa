@@ -17,6 +17,8 @@ require_once("Config.inc.php");
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="web/ionicons/css/ionicons.min.css">
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

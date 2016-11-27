@@ -18,8 +18,10 @@ if(isset($_POST['enviar'])){
     echo '<div class="jumbotron">
       <div class="container">
         <h1>Gotta catch em all</h1>
-        <p>Bem-vindo!.</p>
+        <p>Pokémon adiconado com sucesso.</p>
         <p><a class="btn btn-primary btn-lg" href="./" role="button">Inicio &raquo;</a></p>
+        <p><a class="btn btn-info" href="./addpkmn" role="button">Adicionar Outro &raquo;</a></p>
+
       </div>
     </div>';
   }

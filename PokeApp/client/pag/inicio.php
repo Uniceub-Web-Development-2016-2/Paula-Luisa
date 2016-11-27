@@ -33,6 +33,12 @@ if(!isset($_SESSION['username'])){
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
           <p><a class="btn btn-success" href="#" role="button">View details &raquo;</a></p>
         </div>
+        <?php if($_SESSION['type'] == 2){ ?>
+        <div class="col-md-4">
+          <h2>Administração</h2>
+          <p><a class="btn btn-primary" href="./adm-users" role="button">Ver usuários &raquo;</a></p>
+        </div>
+        <?php } ?>
       </div>
 
       <hr>
